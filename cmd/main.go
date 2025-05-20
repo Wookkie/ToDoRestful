@@ -11,8 +11,12 @@ func main() {
 	taskService := service.NewTaskService()
 	taskHandler := handlers.NewTaskHandler(taskService)
 
+	userService := service.NewUserService()
+	userHandler := handlers.NewUserHandler(userService)
+
 	r := gin.Default()
 	router.TaskRoutes(r, taskHandler)
+	router.UserRoutes(r, userHandler)
 
 	r.Run(":8080")
 }
