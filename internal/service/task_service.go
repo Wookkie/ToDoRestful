@@ -30,14 +30,14 @@ func (s *TaskService) GetTaskByID(id string) (*model.Task, error) {
 	return nil, errors.New("задача не найдена")
 }
 
-func (s *TaskService) CreateTask(task model.Task) model.Task { //почему здесь без указателей
-	task.ID = uuid.New().String() //преобразовывает НОВЫЙ UUID в строку
+func (s *TaskService) CreateTask(task model.Task) model.Task { 
+	task.ID = uuid.New().String() 
 	s.tasks = append(s.tasks, task)
 	return task
 }
 
 // что в данной функции происходит и как
-func (s *TaskService) UpdateTask(id string, updated model.Task) (*model.Task, error) { //почему что-то с указателем, а что-то без него
+func (s *TaskService) UpdateTask(id string, updated model.Task) (*model.Task, error) { 
 	for i, task := range s.tasks {
 		if task.ID == id {
 			updated.ID = id
