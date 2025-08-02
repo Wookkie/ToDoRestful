@@ -13,9 +13,5 @@ type Task struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	Status      Status `json:"status"`
+	UserID      string `json:"user_id"`
 }
-
-// Далее: task_repository.go — slice хранения и методы: Create, Get, Update, Delete
-// task_service.go — вызывает методы репозитория, бизнес-правила
-// task_handler.go — парсит запросы, вызывает сервис и отдает ответы через Gin
-// main.go — инициализация Gin, роутинг, запуск сервера

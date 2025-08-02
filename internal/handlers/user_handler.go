@@ -33,6 +33,11 @@ func (h *UserHandler) GetUserByID(ctx *gin.Context) {
 
 func (h *UserHandler) CreateUser(ctx *gin.Context) {
 	var user model.User
+
+	if err := ctx.ShouldBindJSON(&user); err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Не удалось создать пользователя"})
+		return
+	}
 	create := h.service.CreateUser(user)
 	ctx.JSON(http.StatusOK, create)
 }
@@ -55,7 +60,7 @@ func (h *UserHandler) DeleteUser(ctx *gin.Context) {
 
 	err := h.service.DeleteUser(id)
 	if err != nil {
-		ctx.JSON(http.StatusNotFound, gin.H{"error": "Пользователь не найден"})
+		ctx.JSON(http.StatusNotFound, gin.H{"error": "пользователь не найден"})
 		return
 	}
 	ctx.Status(http.StatusNoContent)

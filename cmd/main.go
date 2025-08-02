@@ -1,22 +1,49 @@
 package main
 
 import (
-	"github.com/Wookkie/ToDoRestful/internal/handlers"
-	"github.com/Wookkie/ToDoRestful/internal/router"
-	"github.com/Wookkie/ToDoRestful/internal/service"
-	"github.com/gin-gonic/gin"
+	"context"
+
+	"github.com/Wookkie/ToDoRestful/internal"
+	"github.com/Wookkie/ToDoRestful/pkg/logger"
+	"github.com/rs/zerolog"
+
+	dbstorage "github.com/Wookkie/ToDoRestful/internal/infrastracture/db_storage"
+	inmemory "github.com/Wookkie/ToDoRestful/internal/infrastracture/in-memory"
+	"github.com/Wookkie/ToDoRestful/internal/server"
 )
 
 func main() {
-	taskService := service.NewTaskService()
-	taskHandler := handlers.NewTaskHandler(taskService)
+	cfg := internal.ReadConfig()
+	log := logger.Get(cfg.Debug)
+	log.Info().Msg("service starting")
+	dsn := cfg.PostgresDSN
 
-	userService := service.NewUserService()
-	userHandler := handlers.NewUserHandler(userService)
+	if err := dbstorage.ApplyMigrations(dsn); err != nil {
+		log.Warn().Err(err).Msg("Failed to apply migrations. Using in-memory storage")
+		startWithInMemory(cfg, log)
+		return
+	}
 
-	r := gin.Default()
-	router.TaskRoutes(r, taskHandler)
-	router.UserRoutes(r, userHandler)
+	repo, err := dbstorage.New(context.Background(), dsn)
+	if err != nil {
+		log.Warn().Err(err).Msg("Failed to connect to db. Using in-memory storage")
+		startWithInMemory(cfg, log)
+		return
+	}
 
-	r.Run(":8080")
+	log.Info().Msg("Using PostgreSQL storage")
+
+	api := server.New(cfg, repo)
+	if err := api.Run(); err != nil {
+		log.Error().Err(err).Msg("Failed running server")
+	}
+}
+
+func startWithInMemory(cfg *internal.Config, log zerolog.Logger) {
+	repo := inmemory.New()
+	log.Info().Msg("Using in-memory storage")
+	api := server.New(cfg, repo)
+	if err := api.Run(); err != nil {
+		log.Error().Err(err).Msg("Failed running server")
+	}
 }
