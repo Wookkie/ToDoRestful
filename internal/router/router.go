@@ -2,11 +2,13 @@ package router
 
 import (
 	"github.com/Wookkie/ToDoRestful/internal/handlers"
+	"github.com/Wookkie/ToDoRestful/internal/middleware"
 	"github.com/gin-gonic/gin"
 )
 
 func TaskRoutes(r *gin.Engine, taskHandler *handlers.TaskHandler) {
 	tasks := r.Group("/tasks")
+	tasks.Use(middleware.AuthMiddleware())
 	{
 		tasks.GET("", taskHandler.GetAllTasks)
 		tasks.GET("/:id", taskHandler.GetTaskByID)

@@ -1,58 +1,37 @@
 package service
 
 import (
-	"errors"
-
 	"github.com/Wookkie/ToDoRestful/internal/model"
+	"github.com/Wookkie/ToDoRestful/internal/repository"
 	"github.com/google/uuid"
 )
 
 type UserService struct {
-	users []model.User
+	repo repository.UserRepository
 }
 
-func NewUserService() *UserService {
-	return &UserService{
-		users: make([]model.User, 0),
-	}
+func NewUserService(repo repository.UserRepository) *UserService {
+	return &UserService{repo: repo}
 }
 
 func (s *UserService) GetAllUsers() []model.User {
-	return s.users
+	return s.repo.GetAllUsers()
 }
 
 func (s *UserService) GetUserByID(id string) (*model.User, error) {
-	for _, user := range s.users {
-		if user.ID == id {
-			return &user, nil
-		}
-	}
-	return nil, errors.New("пользователь не найден")
+	return s.repo.GetUserByID(id)
 }
 
 func (s *UserService) CreateUser(user model.User) model.User {
 	user.ID = uuid.New().String()
-	s.users = append(s.users, user)
-	return user
+	return s.repo.CreateUser(user)
 }
 
 func (s *UserService) UpdateUser(id string, updated model.User) (*model.User, error) {
-	for i, user := range s.users {
-		if user.ID == id {
-			updated.ID = id
-			s.users[i] = updated
-			return &updated, nil
-		}
-	}
-	return nil, errors.New("пользователь не найден")
+	updated.ID = id
+	return s.repo.UpdateUser(id, updated)
 }
 
 func (s *UserService) DeleteUser(id string) error {
-	for i, user := range s.users {
-		if user.ID == id {
-			s.users = append(s.users[:i], s.users[i+1:]...)
-			return nil
-		}
-	}
-	return errors.New("пользователь не найден")
+	return s.repo.DeleteUser(id)
 }
