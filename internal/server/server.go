@@ -8,6 +8,7 @@ import (
 
 	"github.com/Wookkie/ToDoRestful/internal"
 	"github.com/Wookkie/ToDoRestful/internal/handlers"
+	"github.com/Wookkie/ToDoRestful/internal/middleware"
 	"github.com/Wookkie/ToDoRestful/internal/repository"
 	"github.com/Wookkie/ToDoRestful/internal/router"
 	"github.com/Wookkie/ToDoRestful/internal/service"
@@ -62,6 +63,8 @@ func (api *API) Stop(ctx context.Context) error {
 func (api *API) configureRoutes() {
 	log.Println("Configuring routes")
 	routerEngine := gin.Default()
+
+	routerEngine.Use(middleware.GzipMiddleware())
 
 	taskHandler := handlers.NewTaskHandler(api.taskService)
 	userHandler := handlers.NewUserHandler(api.userService)
