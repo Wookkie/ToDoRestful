@@ -1,0 +1,27 @@
+[33m77f2132[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mpractic_6[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{0}: reset: moving to HEAD~1
+[33m2640d91[m[33m ([m[1;31morigin/practic_6[m[33m)[m HEAD@{1}: reset: moving to HEAD~1
+[33m85afc22[m HEAD@{2}: commit: add gzip compression support
+[33m2640d91[m[33m ([m[1;31morigin/practic_6[m[33m)[m HEAD@{3}: commit: dockerfile + docker compose
+[33m77f2132[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mpractic_6[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{4}: checkout: moving from practic_6 to practic_6
+[33m77f2132[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mpractic_6[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{5}: checkout: moving from practic_6 to practic_6
+[33m77f2132[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mpractic_6[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{6}: checkout: moving from main to practic_6
+[33m77f2132[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mpractic_6[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{7}: checkout: moving from main to main
+[33m77f2132[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mpractic_6[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{8}: pull --tags origin main: Fast-forward
+[33m2484655[m[33m ([m[1;31morigin/practic_5[m[33m, [m[1;32mpractic_5[m[33m)[m HEAD@{9}: merge practic_5: Fast-forward
+[33m24cf506[m HEAD@{10}: checkout: moving from practic_5 to main
+[33m2484655[m[33m ([m[1;31morigin/practic_5[m[33m, [m[1;32mpractic_5[m[33m)[m HEAD@{11}: checkout: moving from main to practic_5
+[33m24cf506[m HEAD@{12}: checkout: moving from main to main
+[33m24cf506[m HEAD@{13}: checkout: moving from practic_6 to main
+[33m24cf506[m HEAD@{14}: checkout: moving from main to practic_6
+[33m24cf506[m HEAD@{15}: checkout: moving from practic_5 to main
+[33m2484655[m[33m ([m[1;31morigin/practic_5[m[33m, [m[1;32mpractic_5[m[33m)[m HEAD@{16}: commit (merge): Merge branch 'main' into practic_5
+[33m2822481[m HEAD@{17}: checkout: moving from main to practic_5
+[33m24cf506[m HEAD@{18}: pull: Fast-forward
+[33m2dec0af[m HEAD@{19}: checkout: moving from practic_5 to main
+[33m2822481[m HEAD@{20}: commit: Task 5_Easy+Middle
+[33md5171a4[m[33m ([m[1;31morigin/practic_4[m[33m)[m HEAD@{21}: Branch: renamed refs/heads/practic_4 to refs/heads/practic_5
+[33md5171a4[m[33m ([m[1;31morigin/practic_4[m[33m)[m HEAD@{23}: commit: middle level
+[33m8cab59e[m HEAD@{24}: commit: done easy level
+[33m2dec0af[m HEAD@{25}: checkout: moving from main to practic_4
+[33m2dec0af[m HEAD@{26}: commit: created basic arch + adding dependencies
+[33mf74927c[m HEAD@{27}: clone: from https://github.com/Wookkie/ToDoRestful.git
