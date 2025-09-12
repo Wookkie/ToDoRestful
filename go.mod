@@ -1,8 +1,8 @@
 module github.com/Wookkie/ToDoRestful
 
-go 1.23.0
+go 1.24.0
 
-toolchain go1.23.11
+toolchain go1.24.7
 
 require (
 	github.com/gin-gonic/gin v1.10.0
@@ -10,6 +10,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/jackc/pgx/v5 v5.7.5
 	github.com/rs/zerolog v1.34.0
+	golang.org/x/sync v0.17.0
 )
 
 require (
