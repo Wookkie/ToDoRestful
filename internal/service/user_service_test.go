@@ -1,11 +1,10 @@
-package service_test
+package service
 
 import (
 	"errors"
 	"testing"
 
 	"github.com/Wookkie/ToDoRestful/internal/model"
-	"github.com/Wookkie/ToDoRestful/internal/service"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -51,7 +50,7 @@ func (r *fakeUserRepo) DeleteUser(id string) error {
 }
 func TestUserService_CreateUser(t *testing.T) {
 	repo := newUserRepo()
-	svc := service.NewUserService(repo)
+	svc := NewUserService(repo)
 
 	user := model.User{Name: "Alice", Email: "alice@example.com"}
 	created := svc.CreateUser(user)
@@ -62,7 +61,7 @@ func TestUserService_CreateUser(t *testing.T) {
 
 func TestUserService_GetUserByID_Success(t *testing.T) {
 	repo := newUserRepo()
-	svc := service.NewUserService(repo)
+	svc := NewUserService(repo)
 
 	user := model.User{ID: "1", Name: "Bob"}
 	repo.users["1"] = user
@@ -74,7 +73,7 @@ func TestUserService_GetUserByID_Success(t *testing.T) {
 
 func TestUserService_GetUserByID_NotFound(t *testing.T) {
 	repo := newUserRepo()
-	svc := service.NewUserService(repo)
+	svc := NewUserService(repo)
 
 	_, err := svc.GetUserByID("42")
 	assert.Error(t, err, "ожидаем ошибку если пользователь не найден")
@@ -82,7 +81,7 @@ func TestUserService_GetUserByID_NotFound(t *testing.T) {
 
 func TestUserService_UpdateUser(t *testing.T) {
 	repo := newUserRepo()
-	svc := service.NewUserService(repo)
+	svc := NewUserService(repo)
 
 	repo.users["1"] = model.User{ID: "1", Name: "Old"}
 
@@ -93,7 +92,7 @@ func TestUserService_UpdateUser(t *testing.T) {
 
 func TestUserService_DeleteUser(t *testing.T) {
 	repo := newUserRepo()
-	svc := service.NewUserService(repo)
+	svc := NewUserService(repo)
 
 	repo.users["1"] = model.User{ID: "1", Name: "DeleteMe"}
 

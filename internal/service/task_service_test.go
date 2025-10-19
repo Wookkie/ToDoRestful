@@ -1,11 +1,10 @@
-package service_test
+package service
 
 import (
 	"errors"
 	"testing"
 
 	"github.com/Wookkie/ToDoRestful/internal/model"
-	"github.com/Wookkie/ToDoRestful/internal/service"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -61,7 +60,7 @@ func (r *fakeTaskRepo) GetTasksByUserID(userID string) []model.Task {
 
 func TestTaskService_CreateTask(t *testing.T) {
 	repo := newTaskRepo()
-	svc := service.NewTaskService(repo)
+	svc := NewTaskService(repo)
 
 	task := model.Task{Title: "Test", UserID: "u1"}
 	created := svc.CreateTask(task)
@@ -72,7 +71,7 @@ func TestTaskService_CreateTask(t *testing.T) {
 
 func TestTaskService_GetTaskByID_Success(t *testing.T) {
 	repo := newTaskRepo()
-	svc := service.NewTaskService(repo)
+	svc := NewTaskService(repo)
 
 	task := model.Task{ID: "1", Title: "Test", UserID: "u1"}
 	repo.tasks["1"] = task
@@ -84,7 +83,7 @@ func TestTaskService_GetTaskByID_Success(t *testing.T) {
 
 func TestTaskService_GetTaskByID_WrongUser(t *testing.T) {
 	repo := newTaskRepo()
-	svc := service.NewTaskService(repo)
+	svc := NewTaskService(repo)
 
 	task := model.Task{ID: "1", Title: "Test", UserID: "u1"}
 	repo.tasks["1"] = task
@@ -95,7 +94,7 @@ func TestTaskService_GetTaskByID_WrongUser(t *testing.T) {
 
 func TestTaskService_DeleteTask_Success(t *testing.T) {
 	repo := newTaskRepo()
-	svc := service.NewTaskService(repo)
+	svc := NewTaskService(repo)
 
 	task := model.Task{ID: "1", UserID: "u1"}
 	repo.tasks["1"] = task
@@ -107,7 +106,7 @@ func TestTaskService_DeleteTask_Success(t *testing.T) {
 
 func TestTaskService_DeleteTask_WrongUser(t *testing.T) {
 	repo := newTaskRepo()
-	svc := service.NewTaskService(repo)
+	svc := NewTaskService(repo)
 
 	task := model.Task{ID: "1", UserID: "u1"}
 	repo.tasks["1"] = task
